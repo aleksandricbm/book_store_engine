@@ -1,0 +1,12 @@
+.row
+  .col-sm-5
+    .general-img-wrap
+      = image_tag number_image(book, 0), alt: 'book-img', class: 'img-shadow general-thumbnail-img'
+  .col-sm-7
+    .mb-60
+      %h1= book.name
+      %p.lead= book.description
+      %p.lead.small= book.authors.map{ |author| author.name}.join(", ")
+      .general-align
+        -#= button_to t("button.buy_now"), order_items_path(), params: {order_item: {quantity: 1, book_id: book.id}}, method: :post, remote: true, class: 'btn btn-primary'
+        = button_to t("button.buy_now"), cart.order_items_path, params: {order_item: {quantity: 1, book_id: book.id}}, method: :post, remote: true, class: 'btn btn-primary'

@@ -1,0 +1,29 @@
+%main.container
+  #slider.carousel.slide{'data-ride': "carousel"}
+    %ol.carousel-indicators
+      - @latests.count.times do |ind|
+        %li{'data-target': "#slider", 'data-slide-to': ind}
+    .carousel-inner{role: "listbox"}
+      - @latests.each_with_index do |book, index|
+        -if index == 0
+          .item.active
+            = render "home/carousel", book: book
+        - else
+          .item
+            = render "home/carousel", book: book
+    %a.left.carousel-control{href: "#slider", role: "button", 'data-slide': "prev"}
+      %span.icon-prev{'aria-hidden': "true"}
+      %span.sr-only Previous
+    %a.right.carousel-control{href: "#slider", role: "button", 'data-slide': "next"}
+      %span.icon-next{'aria-hidden': "true"}
+      %span.sr-only Next
+.container
+  .jumbotron.text-center.mb-0
+    %h2.h1= t("title.welcome")
+    .mb-res-50
+      %p= t("text.home_members")
+      = link_to t("button.start"), catalog_path(), class: "btn btn-default"
+  .mb-35
+    %h3=t ("text_helpers.best_sellers")
+    .row
+      = render "home/best_sellers", bestsellers: @bestsellers

@@ -1,0 +1,66 @@
+<h2>Change your password</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <%= f.label :password, "New password" %><br />
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm new password" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Change my password" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+    %main.container.general-main-wrap
+      .text-center
+        %h3.general-login-title Set new password
+      %form.general-form
+        .form-group.mb-30
+          %label.control-label.input-label{for: "password"} Type a new Password
+          %input#password.form-control{name:"password", type: "password", placeholder: "Type a new Password"}
+        .form-group.mb-40
+          %label.control-label.input-label{for: "confirmPassword"} Confirm Password
+          %input#confirmPassword.form-control{name:"password", type: "password", placeholder: "Confirm Password"}
+        %button.btn.btn-default.center-block.mb-20 Change
+    %footer.navbar-inverse
+      .container
+        .row
+          .col-sm-9
+            %ul.list-inline.general-align.mb-25
+              %li
+                %a.nav-link{href: "#"} Home
+              %li
+                %a.nav-link{href: "#"} Shop
+              %li
+                %a.nav-link{href: "#"} Orders
+              %li
+                %a.nav-link{href: "#"} Settings
+          .col-sm-3
+            %p.general-nav-mail support@bookstore.com
+            %p.general-nav-number (555)-555-5555
+            %ul.list-inline.general-align
+              %li
+                %a.nav-link{href: "#"}
+                  %i.fa.fa-facebook{'aria-hidden': "true"}
+              %li
+                %a.nav-link{href: "#"}
+                  %i.fa.fa-twitter{'aria-hidden': "true"}
+              %li
+                %a.nav-link{href: "#"}
+                  %i.fa.fa-google-plus{'aria-hidden': "true"}
+              %li
+                %a.nav-link{href: "#"}
+                  %i.fa.fa-instagram{'aria-hidden': "true"}

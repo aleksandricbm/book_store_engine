@@ -1,0 +1,69 @@
+!!! 5
+%html
+  %head
+    %meta{charset: "UTF-8"}
+    %meta{name: "viewport", content: "width=device-width"}
+    %title= t("mag_title")
+    %link{href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  %body
+    %header.navbar.navbar-default
+      .container
+        .navbar-header
+          %button.navbar-toggle.pull-left{type: "button", 'data-toggle': "collapse", 'data-target': "#navbar"}
+            %span.sr-only
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand= t("mag_title")
+          -# %a.shop-link.pull-right.visible-xs{href: cart_path()}
+            -# %span.shop-icon= shop_quantity
+        -# %a.shop-link.pull-right.hidden-xs{href: cart_path()}
+          -# %span.shop-icon= shop_quantity
+
+        #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
+          .visible-xs
+            %button.close{type: "button", 'aria-label': "Close"}
+              %span{'aria-hidden': "true"} &times;
+            %ul.nav.navbar-nav
+              %li
+                %a{href: "/"}= t("footer.home")
+              %li
+                %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= t("footer.shop")
+                %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
+                  = render 'layouts/list_categories', categories: @categories
+              - if user_signed_in?
+                %li
+                  %span = current_user.email
+                  = link_to t('header.log_out'), destroy_user_session_url, :method => :delete
+              - else
+                = render "devise/shared/log_in_sign_up"
+          .hidden-xs
+            %ul.nav.navbar-nav
+              %li
+                %a{href: root_path()}= t("footer.home")
+              %li.dropdown
+                %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t("footer.shop")
+                %ul.dropdown-menu
+                  = render "layouts/list_categories", categories: @categories
+              - if user_signed_in?
+                %li.dropdown
+                  %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t("footer.my_acc")
+                  %ul.dropdown-menu
+                    %li
+                      - if current_user.image?
+                        .text-center= image_tag(current_user.image, :class => "img-circle")
+                      - else
+                        .text-center= current_user.email
+
+                    %li.divider{role: "separator"}
+                    %li
+                      %a{href: orders_path}= t('footer.orders')
+                    %li
+                      %a{href: settings_address_path}= t('footer.settings')
+                    %li.divider{role: "separator"}
+                    %li
+                      = link_to t('header.log_out'), destroy_user_session_url, :method => :delete
+              - else
+                = render "devise/shared/log_in_sign_up"

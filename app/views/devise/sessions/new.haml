@@ -1,0 +1,28 @@
+%main.container.general-main-wrap
+  .text-center
+    %h3.general-login-title= t('.log_in')
+    %a.general-login-icon{href: user_facebook_omniauth_authorize_path}
+      %i.fa.fa-facebook-official
+    %p.general-login-text or
+  = form_for resource, as: resource_name, url: session_path(resource_name), role: 'form', html: {class: "general-form"} do |f|
+    .form-group.mb-30
+      %label.control-label.input-label{for: "email"}= t('.enter_email')
+      = f.email_field :email, class: 'email form-control', placeholder: t('.enter_email'), autofocus: true
+      %label.control-label.input-label{for: "password"}= t('.enter_password')
+      = f.password_field :password, class: 'form-control form-control-sm', placeholder: t('.enter_password'), autocomplete: 'off'
+      = render "devise/shared/forgot"
+    -if devise_mapping.rememberable?
+      .form-group.checkbox.text-center.mb-30
+        %label.checkbox-label
+          -#%input.checkbox-input{type: "checkbox", hidden: "true"}
+          = f.check_box :remember_me, hidden: "true", class: "checkbox-input"
+          %span.checkbox-icon
+            %i.fa.fa-check
+          %span.checkbox-text= t('devise.remember')
+    %p.general-sign-text.text-center
+      = t('devise.dhaa')
+      = render "devise/shared/sign_up"
+    .form-group.mb-30
+      .text-center
+        = f.submit "Log In", class: 'btn btn-default mb-20'
+= render "devise/shared/links"
