@@ -17,10 +17,10 @@
             %span.icon-bar
             %span.icon-bar
           %a.navbar-brand= t("mag_title")
-          -# %a.shop-link.pull-right.visible-xs{href: cart_path()}
-            -# %span.shop-icon= shop_quantity
-        -# %a.shop-link.pull-right.hidden-xs{href: cart_path()}
-          -# %span.shop-icon= shop_quantity
+          %a.shop-link.pull-right.visible-xs{href: cart.cart_path()}
+            %span.shop-icon= shop_quantity
+        %a.shop-link.pull-right.hidden-xs{href: cart.cart_path()}
+          %span.shop-icon= shop_quantity
 
         #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
           .visible-xs
@@ -36,13 +36,13 @@
               - if user_signed_in?
                 %li
                   %span = current_user.email
-                  = link_to t('header.log_out'), destroy_user_session_url, :method => :delete
+                  = link_to t('header.log_out'), main_app.destroy_user_session_url, :method => :delete
               - else
                 = render "devise/shared/log_in_sign_up"
           .hidden-xs
             %ul.nav.navbar-nav
               %li
-                %a{href: root_path()}= t("footer.home")
+                %a{href: main_app.root_path()}= t("footer.home")
               %li.dropdown
                 %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t("footer.shop")
                 %ul.dropdown-menu
@@ -59,11 +59,11 @@
 
                     %li.divider{role: "separator"}
                     %li
-                      %a{href: orders_path}= t('footer.orders')
+                      %a{href: cart.orders_path}= t('footer.orders')
                     %li
-                      %a{href: settings_address_path}= t('footer.settings')
+                      %a{href: cart.settings_address_path}= t('footer.settings')
                     %li.divider{role: "separator"}
                     %li
-                      = link_to t('header.log_out'), destroy_user_session_url, :method => :delete
+                      = link_to t('header.log_out'), main_app.destroy_user_session_url, :method => :delete
               - else
                 = render "devise/shared/log_in_sign_up"

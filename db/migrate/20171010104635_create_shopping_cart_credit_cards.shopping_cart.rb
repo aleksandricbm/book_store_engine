@@ -1,4 +1,4 @@
-# This migration comes from shopping_cart (originally 20171004135449)
+# This migration comes from shopping_cart (originally 20171009145449)
 class CreateShoppingCartCreditCards < ActiveRecord::Migration[5.1]
   def change
     create_table :shopping_cart_credit_cards do |t|

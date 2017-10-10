@@ -1,0 +1,21 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= "Order #{@order_details.number}"
+  .row.mb-20
+    .col-sm-3
+      %h3.general-subtitle= t("checkout.confirm.ship_address")
+      = render 'mini_address', address: @order_details.shipping_address
+    .col-sm-3
+      %h3.general-subtitle= t("checkout.confirm.bil_address")
+      = render 'mini_address', address: @order_details.billing_address
+    .col-sm-3
+      %h3.general-subtitle= t("checkout.confirm.ship")
+      = render 'mini_delivery', delivery: @order_details.shipping_method
+    .col-sm-3
+      %h3.general-subtitle= t("checkout.confirm.pay")
+      = render 'mini_payment', payment: @order_details.credit_card
+  .visible-xs
+    = render 'line_book_xs', order_items: @order_details.order_items
+  .hidden-xs.divider-lg.pt-20
+    = render 'line_book', order_items: @order_details.order_items
+  .text-center.general-text-right
+    = render 'order_summary', order_details: @order_details

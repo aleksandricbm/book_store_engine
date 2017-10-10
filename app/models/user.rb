@@ -3,13 +3,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
-  has_one :billing_address, dependent: :destroy
-  has_one :shipping_address, dependent: :destroy
-  has_many :orders
+  has_one :billing_address, dependent: :destroy, class_name: ShoppingCart::ShippingAddress
+  has_one :shipping_address, dependent: :destroy, class_name: ShoppingCart::ShippingAddress
+  has_many :orders, class_name: ShoppingCart::Order
 
   attr_accessor :skip_password
   validates :email, format: { with: /\A[^-.]\w+[-.]?(\w+[-!#$%&'*+\/=?^_`{|}~.]\w+)*[^-]@([\w\d]+)\.([\w\d]+)\z/ }
-  validates :password, length: { minimum: 8 }, format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[\w-]{8,}/ }, unless: :skip_password
+  validates :password, length: { minimum: 8 }, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{8,}\z/ }, unless: :skip_password
 
 
   def self.from_omniauth(auth)

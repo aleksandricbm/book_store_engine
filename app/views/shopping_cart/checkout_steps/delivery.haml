@@ -1,0 +1,36 @@
+%main.container.general-main-wrap
+  = render 'header'
+  = form_for @delivery, url: wizard_path, method: :put, remote: false do |f|
+    - if params[:redirect].present?
+      = f.hidden_field 'redirect',name: 'redirect', id: 'redirect', value: params[:redirect]
+    %h3.general-subtitle= t('checkout.ship_method')
+    .hidden-xs.mb-res-50
+      %table.table.table-hover
+        %thead
+          %tr
+            %th.col-method
+              %span.in-grey-600.ml-40= t("checkout.delivery.method")
+            %th
+              %span.in-grey-600= t("checkout.delivery.day")
+            %th
+              %span.in-grey-600= t("checkout.delivery.price")
+            - if flash[:error]
+              %div.has-error
+                %span.help-block= flash[:error]
+        %tbody
+          - ShoppingCart::ShippingMethod.all.each do |d|
+            %tr
+              %td
+                .form-group.radio.mt-0.mb-0
+                  %label.radio-label
+                    = f.radio_button :id, d.id, class: "radio-input", hidden: true
+                    %span.radio-icon
+                    %span.radio-text= d.name
+              %td
+                %span= d.duration
+              %td
+                %span.font-16.in-gold-500= "€#{d.price}"
+    .general-text-align
+      = render 'order_summary', order: @order
+    .text-center
+      %button.btn.center-block.mb-20= t('button.save_continue')

@@ -28,16 +28,16 @@ def generate_data
 
   25.times { Country.create(name: FFaker::Address.country) }
 
-  # Coupon.create(code: '10', price: 10)
+  ShoppingCart::Coupon.create(code: '10', price: 10)
 
-  # ShippingMethod.create(name: 'Delivery Next Day!', duration: '1 to 2 days', price: 28.5)
-  # ShippingMethod.create(name: 'Standard Delivery', duration: '2 to 4 days', price: 18.5)
+  ShoppingCart::ShippingMethod.create(name: 'Delivery Next Day!', duration: '1 to 2 days', price: 28.5)
+  ShoppingCart::ShippingMethod.create(name: 'Standard Delivery', duration: '2 to 4 days', price: 18.5)
 
-  # OrderStatus.create(name: 'Waiting for processing')
-  # OrderStatus.create(name: 'In Progress')
-  # OrderStatus.create(name: 'In delivery')
-  # OrderStatus.create(name: 'Delivered')
-  # OrderStatus.create(name: 'Canceled')
+  ShoppingCart::OrderStatus.create(name: 'Waiting for processing')
+  ShoppingCart::OrderStatus.create(name: 'In Progress')
+  ShoppingCart::OrderStatus.create(name: 'In delivery')
+  ShoppingCart::OrderStatus.create(name: 'Delivered')
+  ShoppingCart::OrderStatus.create(name: 'Canceled')
 
   User.create(email: 'admin@admin.com', password: 'adminadmin', password_confirmation: 'adminadmin', role: 'admin')
 end

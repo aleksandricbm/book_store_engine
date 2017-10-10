@@ -1,11 +1,11 @@
 # This controller for ApplicationController
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :reset_session
+  rescue_from ActionController::InvalidAuthenticityToken, with: :redirect_to_root_path
 
+  include ShoppingCart::Current_order
   before_action :categories
-  # before_action :current_order
-
-  # helper_method :current_order
+  before_action :current_order
 
   add_flash_types :error, :success
 
@@ -32,4 +32,11 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
+
+  private
+
+  def redirect_to_root_path
+    redirect_to root_path
+  end
+
 end
