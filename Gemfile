@@ -33,7 +33,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'wicked', '~> 1.3.2'
 
-gem 'shopping_cart', path: '../shopping_cart'
+gem 'shopping_cart', git: 'git@github.com:aleksandricbm/shopping_cart.git', branch: 'dev'
 
 group :development, :test do
   gem 'factory_girl_rails', '~> 4.8.0'
