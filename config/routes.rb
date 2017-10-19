@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   get 'catalog', to: 'books#index'
   resources :reviews, only: :create
   resources :images, only: %i[new create show]
+  get 'users', to: 'users#index'
+  match 'settings/privacy', to: 'users#index', via: 'get'
+  match 'settings/privacy', to: 'users#update', via: 'patch'
 end

@@ -7,4 +7,6 @@ class Category < ApplicationRecord
   scope :filter_status, -> { where("order_statuses.name='Waiting for processing'") }
   scope :distinct_category, -> { select('distinct on(categories.name) categories.name, books.id as book_id, sum(order_items.quantity) as total') }
   scope :join_tables, -> { joins(books: [{ order_items: [{ order: :order_status }] }]) }
+  scope :group_cat_name_book, -> { group('categories.name', 'books.id') }
+  scope :order_total, -> { order('name desc, total desc') }
 end

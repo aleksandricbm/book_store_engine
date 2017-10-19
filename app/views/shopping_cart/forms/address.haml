@@ -26,7 +26,7 @@
       %span.help-block= address.errors[:zip][1]
   .form-group{ class: ("has-error" unless address.errors[:сountry_id].empty?) }
     = label_tag :сountry, t('address.сountry'), class: "control-label input-label"
-    = f.select :country_id, Country.all.collect { |country| [country.name, country.id] },{ selected: address.country_id}, {class: "form-control", placeholder: t('address.select_country')}
+    = f.select :country_id, ShoppingCart::Country.all.collect { |country| [country.name, country.id] },{ selected: address.country_id}, {class: "form-control", placeholder: t('address.select_country')}
   .form-group.mb-55{ class: ("has-error" unless address.errors[:phone].empty?) }
     = label_tag :phone, t('address.phone'), class: "control-label input-label"
     = f.text_field :phone, placeholder: "Example +355 66 123 4567", class: "form-control"

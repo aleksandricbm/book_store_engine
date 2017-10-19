@@ -1,5 +1,5 @@
 # .frozen
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
   mount_uploader :file, ImageUploader
   belongs_to :book, optional: true
 end

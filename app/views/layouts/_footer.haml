@@ -8,9 +8,7 @@
           %li
             %a.nav-link{href: main_app.catalog_path()}= t("footer.shop")
           %li
-            -#%a.nav-link{href: cart_path()}= t("footer.orders")
-          %li
-            %a.nav-link{href: "#"}= t("footer.settings")
+            %a.nav-link{href: cart.settings_address_path}= t('footer.settings')
       .col-sm-3
         %p.general-nav-mail support@bookstore.com
         %p.general-nav-number (555)-555-5555

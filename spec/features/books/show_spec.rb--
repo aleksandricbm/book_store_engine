@@ -1,0 +1,33 @@
+require 'rails_helper'
+
+RSpec.feature 'Book page', :type => :feature do
+  before do
+    @book = FactoryGirl.create(:book)
+    visit book_path(@book)
+  end
+
+  describe 'body book' do
+    it 'full attribute' do
+      expect(page.html).to have_content @book.name
+      expect(page.html).to have_content @book.price
+      expect(page.html).to have_content @book.description
+      expect(page.html).to have_content @book.height
+      expect(page.html).to have_content @book.weight
+      expect(page.html).to have_content @book.depth
+      expect(page.html).to have_content @book.material
+    end
+
+    it 'button plus' do
+      # find(:xpath, './/a[child::i[contains(@class,\'fa-plus\')]]').trigger('click')
+# sleep 1
+binding.pry
+      # within('form.new_order_item') do
+        expect(page.find('#order_item_quantity').value).to eq '1'
+        all('.input-link').last.click
+      # end
+      sleep 1
+      binding.pry
+      expect(page.find('#order_item_quantity').value).to eq '2'
+    end
+  end
+end

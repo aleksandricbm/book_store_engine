@@ -26,7 +26,7 @@ def generate_data
     Author.find(rand(1..25)).books << book
   end
 
-  25.times { Country.create(name: FFaker::Address.country) }
+  25.times { ShoppingCart::Country.create(name: FFaker::Address.country) }
 
   ShoppingCart::Coupon.create(code: '10', price: 10)
 

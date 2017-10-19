@@ -39,6 +39,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.8.0'
   gem 'pry-byebug', '~> 3.4.2'
   gem 'rspec-rails', '~> 3.6.0'
+  gem 'rubycritic', require: false
 end
 
 group :development do
@@ -60,4 +61,6 @@ group :test do
   gem 'database_cleaner', '~> 1.6.1'
   gem 'rails-controller-testing', '~> 1.0.2'
   gem 'shoulda-matchers', '~> 3.1.2'
+  gem 'transactional_capybara'
+  gem 'simplecov', require: false
 end

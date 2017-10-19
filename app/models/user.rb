@@ -3,9 +3,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
-  has_one :billing_address, dependent: :destroy, class_name: ShoppingCart::ShippingAddress
-  has_one :shipping_address, dependent: :destroy, class_name: ShoppingCart::ShippingAddress
-  has_many :orders, class_name: ShoppingCart::Order
+  has_one :billing_address, class_name: 'ShoppingCart::ShippingAddress', dependent: :destroy
+  has_one :shipping_address, class_name: 'ShoppingCart::ShippingAddress', dependent: :destroy
+  has_many :orders, class_name: 'ShoppingCart::Order'
+  has_many :reviews
 
   attr_accessor :skip_password
   validates :email, format: { with: /\A[^-.]\w+[-.]?(\w+[-!#$%&'*+\/=?^_`{|}~.]\w+)*[^-]@([\w\d]+)\.([\w\d]+)\z/ }

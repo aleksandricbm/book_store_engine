@@ -5,11 +5,12 @@ class BooksController < ApplicationController
 
   before_action :list_catalog, only: [:index]
   def index
-    @category ||= if param_category
+    @category ||= if param_category[:category]
                     Category.find_by(id: param_category[:category])
                   else
                     Category.all
                   end
+
     @count_book_in_category = count_book_in_category
     respond_to do |format|
       format.html

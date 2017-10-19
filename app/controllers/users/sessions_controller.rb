@@ -1,6 +1,5 @@
 # This controller for Users::SessionsController
 class Users::SessionsController < Devise::SessionsController
-
   def create
     auth = request.env['omniauth.auth']
     user = User.where(provider: auth['provider'],

@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
   def create
     @review = Review.new(params_review)
-    @review.update(user_id: current_user.id) if current_user.id.present?
-    redirect_to request.referer
+    @review.update(user_id: current_user.id) unless current_user.nil?
+    redirect_back(fallback_location: root_path)
   end
 
   private

@@ -4,6 +4,6 @@ module CheckoutStepsHelper
   end
 
   def menu_active(index)
-    (menu_header.key(params[:id].capitalize) >= index + 1) ? 'active' : ''
+    menu_header.key(params[:id].capitalize) >= (index + 1) ? 'active' : ''
   end
 end

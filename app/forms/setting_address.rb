@@ -34,5 +34,4 @@ class SettingAddress
   def params_address(params, type)
     params.require(type).permit(:first_name, :last_name, :address, :city, :zip, :country_id, :phone)
   end
-
 end

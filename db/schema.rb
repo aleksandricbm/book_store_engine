@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010104635) do
+ActiveRecord::Schema.define(version: 20171019072313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,10 @@ ActiveRecord::Schema.define(version: 20171010104635) do
     t.index ["country_id"], name: "index_shopping_cart_billing_addresses_on_country_id"
     t.index ["order_id"], name: "index_shopping_cart_billing_addresses_on_order_id"
     t.index ["user_id"], name: "index_shopping_cart_billing_addresses_on_user_id"
+  end
+
+  create_table "shopping_cart_countries", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "shopping_cart_coupons", force: :cascade do |t|
