@@ -1,10 +1,19 @@
 GIT
   remote: git@github.com:aleksandricbm/shopping_cart.git
-  revision: 51de5914b200229e316cf407bcdebce745c5e1be
+  revision: 82f77b3e68075b387aafac919d8293922a7b43b0
   branch: dev
   specs:
     shopping_cart (0.1.0)
-      rails (~> 5.1.2)
+      cancancan (~> 2.0)
+      country_select
+      devise
+      draper
+      haml-rails
+      jquery-rails
+      jquery_mask_rails
+      rails
+      virtus
+      wicked
 
 GEM
   remote: https://rubygems.org/
@@ -425,7 +434,18 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
+    haml-rails (1.0.0)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      haml (>= 4.0.6, < 6.0)
+      html2haml (>= 1.0.1)
+      railties (>= 4.0.1)
     hashie (3.5.6)
+    html2haml (2.2.0)
+      erubis (~> 2.7.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
+      ruby_parser (~> 3.5)
     httpclient (2.8.3)
     hurley (0.2)
     i18n (0.8.6)
